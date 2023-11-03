@@ -1,0 +1,25 @@
+extends layout
+ 
+block content
+  h1= title
+ 
+  div(class="container-fluid")
+    div(class="row")
+      - let results = [{ArtworkTitle: "Starry Night", ArtistName: "Vincent van Gogh", Cost: 100}, {ArtworkTitle: "Mona Lisa", ArtistName: "Leonardo da Vinci", Cost:180}, {ArtworkTitle: "The Persistence of Memory", ArtistName: "Salvador Dali", Cost:89}];
+        each result in results
+         div(class="col-sm-2")
+          p Title: #{result.ArtworkTitle}
+          p Name: #{result.ArtistName}
+          p cost: $#{result.Cost}
+          br
+  h5= 'Buy'
+
+  div(class="container-fluid")
+    each result, index in results
+      div(class="row", onclick=`buy(${index})`)
+        div(class="col-sm-2") <br>result #{index}: #{result.ArtworkTitle} ArtistName:#{result.ArtistName} Cost:#{result.Cost}
+  script.
+    function buy(price){
+      alert('You purchased item ' + price)
+    }
+          

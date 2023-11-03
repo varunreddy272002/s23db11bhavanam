@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Hola, These is Varun Kumar Reddy trying to be funny.
+  button(type="button", class="btn btn-secondary",id="button", onclick= "goFaster()") Press me
+
+  #faster Increase the speed
+  br
+ 
+  
+  script.
+    var mph = 20;
+    var change = 1;
+    function goFaster(){
+      mph = change + mph;
+      change = change + 1;
+      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`
+    }
+
+
+    br
+
+  a(href="/artworks") link to artworks
