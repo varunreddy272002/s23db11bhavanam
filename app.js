@@ -34,7 +34,7 @@ var usersRouter = require('./routes/users');
 var artworksRouter = require('./routes/artworks');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
-var costumeRouter = require('./models/costume');
+var costumeRouter = require('./models/artworks');
 var resourceRouter = require('./routes/resource');
 
 var app = express();

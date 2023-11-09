@@ -1,4 +1,4 @@
-const Costume = require('../models/costume');
+const ArtWorks = require('../models/artworks');
 // var express = require('express');
 // const costume_controlers= require('../controllers/costume');
 // var router = express.Router();
@@ -9,9 +9,9 @@ const Costume = require('../models/costume');
  
  
 async function recreateDB() {
-    await Costume.deleteMany();
+    await ArtWorks.deleteMany();
  
-    let instance1 = new Costume({
+    let instance1 = new ArtWorks({
       costume_type: "Starry Night",
       size: 'Small',
       cost: 230
@@ -25,7 +25,7 @@ async function recreateDB() {
         console.error(err);
       });
  
-      let instance2 = new Costume({
+      let instance2 = new ArtWorks({
         costume_type: "Vincent van Gogh",
         size: 'medium',
         cost: 200
@@ -39,7 +39,7 @@ async function recreateDB() {
           console.error(err);
         });
  
-        let instance3 = new Costume({
+        let instance3 = new ArtWorks({
             costume_type: "Mona Lisa",
             size: 'small',
             cost: 300

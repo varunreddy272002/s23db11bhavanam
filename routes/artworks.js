@@ -1,5 +1,5 @@
 var express = require('express');
-const costume_controlers = require('../controllers/costume');
+const costume_controlers = require('../controllers/artworks');
 var router = express.Router();
  
 /* GET costumes view */
