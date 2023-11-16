@@ -122,3 +122,18 @@ exports.costume_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+
+   // Handle building the view for updating a costume.
+// query provides the id
+exports.costume_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        const id = new ObjectId(req.query.id);
+    let result = await Costume.findById(id)
+    res.render('artworkupdate', { title: 'ArtWork Update', result: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
