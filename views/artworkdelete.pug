@@ -1,0 +1,55 @@
+extends layout
+block content
+  h1= title
+  if (result == null)
+    h2 No instance to delete
+  else
+    - let costumeid = result._id
+    - let costume_type = result.costume_type
+    - let costumecost = result.cost 
+    - let costumesize = result.size
+    - let actionid = "/resource/artworks/" + costumeid
+
+    script.
+      var actionid = "#{actionid}";
+
+    div
+      div.row
+        div(class='costumeAttr mr-3') ArtWork ID is:
+        div #{costumeid}
+      div.row
+        div(class='costumeAttr mr-3') ArtWork Type is:
+        div #{costume_type}
+      div.row
+        div(class='costumeAttr mr-3') ArtWork Size is:
+        div #{costumesize}
+      div.row
+        div(class='costumeAttr mr-3') ArtWork Cost is:
+        div #{costumecost}
+
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the costume collection
+        window.location.href='/artworks'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Artwork Deleted successfully")
+          window.location.href='/artworks'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed: " + error)
+        });
+      }

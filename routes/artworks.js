@@ -13,5 +13,8 @@ router.get('/create', costume_controlers.costume_create_Page);
 
 /* GET create update page */
 router.get('/update', costume_controlers.costume_update_Page);
+
+/* GET delete costume page */
+router.get('/delete', costume_controlers.costume_delete_Page);
  
 module.exports = router;
