@@ -1,24 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Hola, These is Varun Kumar Reddy trying to be funny.
-  button(type="button", class="btn btn-secondary",id="button", onclick= "goFaster()") Press me
-
-  #faster Increase the speed
-  br
- 
-  
-  script.
-    var mph = 20;
-    var change = 1;
-    function goFaster(){
-      mph = change + mph;
-      change = change + 1;
-      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`
-    }
-
-
+  if (!user)
+    a(href="/login") Login
     br
-
-  a(href="/artworks") link to artworks
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/artworks") Take me to costumes
+    br
+    a(href="/logout") Logout
+  // Additional content here
+  // Add your content with the desired indentation
