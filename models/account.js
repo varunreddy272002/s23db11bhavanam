@@ -6,14 +6,12 @@ const accountSchema = new Schema({
     username: {
         type: String,
         required: true,
-        minlength: [5, 'Username must be at least 5 characters'],
-        maxlength: [25, 'Username cannot exceed 25 characters']
+        validate: {
+            validator: (value) => /^[a-zA-Z0-9_]+$/.test(value),
+            message: 'Username can only contain alphanumeric characters and underscores',
+        },
     },
-    password: {
-        type: String,
-        required: true,
-        minlength: [10, 'Password must be at least 10 characters']
-    }
+    password: String, // Assuming no specific validation for the password
 });
 
 accountSchema.plugin(passportLocalMongoose);
