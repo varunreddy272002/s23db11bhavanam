@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
+
 const accountSchema = new Schema({
-    username: String,
-    password: String
+    username: {
+        type: String,
+        required: true,
+        minlength: [5, 'Username must be at least 5 characters'],
+        maxlength: [25, 'Username cannot exceed 25 characters']
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: [10, 'Password must be at least 10 characters']
+    }
 });
+
 accountSchema.plugin(passportLocalMongoose);
-// We export the Schema to avoid attaching the model to the
-// default mongoose connection.
+
 module.exports = mongoose.model("Account", accountSchema);
