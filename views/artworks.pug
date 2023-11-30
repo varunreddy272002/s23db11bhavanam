@@ -1,47 +1,27 @@
-//- extends layout
- 
-//- block content
-//-   h1= title
- 
-//-   div(class="container-fluid")
-//-     div(class="row")
-//-       - for(let i = 0; i < results.length; i++){
-//-         div(class="col-sm-2", style = 'cursor: pointer;', id = `res-${i}`)
-//-           p artsworkName: #{results[i].costume_type}
-//-           p artsworkCost: $#{results[i].cost}
-//-           p artsworkSize: #{results[i].size}
- 
-//-         script.
-//-           (function(index) {
-//-             document.getElementById(`res-${index}`).addEventListener('click', function() {
-//-               buy(index);
-//-             });
-//-           })(i);
-//-       - }
-//-     script.
-//-       function buy(index){
-//-         alert(`You purchased item ${index}`)
-//-       }
-
 extends layout
- 
+
 block content
   h1= title
   - let artWorks = results;
- 
+  - let create = `dispatch("/artworks/create")`
+  button.btn.btn-sm.btn-primary.ml-1(onclick= create) Create
+
   div(class="container-fluid")
-      each artWork in artWorks
-        - let destination = `dispatch("/artworks/update?id=${artWork._id}")`
-        div(class="col-sm-2")
-          p ArtWork Name: #{artWork.costume_type}
-          p ArtWork Cost: $#{artWork.cost}
-          p ArtWorkSize: #{artWork.size}
-        button.btn.btn-sm.btn-primary.ml-1(onclick= destination) Update
-        br
-        br
- 
+    each artWork in artWorks
+      - let destination = `dispatch("/artworks/update?id=${artWork._id}")`
+      - let detail = `dispatch("/artworks/detail?id=${artWork._id}")`
+      - let deleteD = `dispatch("/artworks/delete?id=${artWork._id}")`
+      div(class="col-sm-2")
+        p ArtWork Name: #{artWork.costume_type}
+        p ArtWork Cost: $#{artWork.cost}
+        p ArtWorkSize: #{artWork.size}
+      button.btn.btn-sm.btn-primary.ml-1(onclick= destination) Update
+      button.btn.btn-sm.btn-warning.ml-1(onclick= detail) Detail
+      button.btn.btn-sm.btn-dark.ml-1(onclick= deleteD) Delete
+      br
+      br
+
   script.
     function dispatch(path) {
       window.location.href = path;
     }
- 
